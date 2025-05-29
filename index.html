@@ -442,7 +442,25 @@
         <h1 class="main-title" id="mainTitle">💐 Wedding Invitation 💐</h1>
         <div class="couple-names">Lokeshwaran & Sathiya </div>
       </div>
+      
+<!-- Hidden audio element -->
+  <audio id="bg-music" src="Dharala-Prabhu-Title-Track-MassTamilan.io.mp3" autoplay loop></audio>
 
+  <script>
+    const audio = document.getElementById('bg-music');
+
+    // Ensure it plays automatically (especially on some browsers like Chrome)
+    document.addEventListener('DOMContentLoaded', () => {
+      // Try to play on load
+      const playAudio = () => {
+        audio.play().catch((error) => {
+          // If autoplay fails (like on user interaction required), try again on user interaction
+          document.body.addEventListener('click', () => audio.play(), { once: true });
+        });
+      };
+      playAudio();
+    });
+  </script>
       <div class="photo-gallery">
         <div class="couple-photo">👰🤵</div>
       </div>
