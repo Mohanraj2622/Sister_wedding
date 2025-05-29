@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sathiya's Wedding Invitation 🎉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffe4e1, #fff);
+      text-align: center;
+      padding: 30px;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      margin: auto;
+      max-width: 500px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    h1 {
+      color: #c0392b;
+    }
+    .btn {
+      padding: 12px 25px;
+      margin: 10px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      background: #e74c3c;
+      color: white;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #c0392b;
+    }
+    .hidden {
+      display: none;
+    }
+    #countdown {
+      font-size: 20px;
+      margin: 20px 0;
+      color: #2c3e50;
+    }
+    audio {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🎊 Sathiya's Wedding 🎊</h1>
+    <p>You're warmly invited to celebrate a beautiful beginning.<br>Come join us for the special day! ❤️</p>
+    
+    <h2>⏳ Countdown to Wedding</h2>
+    <div id="countdown">Loading...</div>
+
+    <h2>📍 Wedding Location</h2>
+    <p><strong>Grand Marriage Hall</strong></p>
+    
+    <h3>How do you plan to travel?</h3>
+    <button class="btn" onclick="showRoute('bus')">🚌 By Bus</button>
+    <button class="btn" onclick="showRoute('vehicle')">🚗 Personal Vehicle</button>
+    
+    <div id="routeDiv" class="hidden">
+      <h3>Click below to open route:</h3>
+      <a id="mapLink" href="#" class="btn" target="_blank">🗺️ View Route</a>
+    </div>
+
+    <h3>🎵 Music for the Moment</h3>
+    <audio controls autoplay loop>
+      <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    function showRoute(mode) {
+      const mapBase = "https://www.google.com/maps/dir/?api=1&destination=11.3458453,77.7183274";
+      let travelMode = mode === "bus" ? "transit" : "driving";
+      const mapURL = `${mapBase}&travelmode=${travelMode}`;
+      document.getElementById('mapLink').href = mapURL;
+      document.getElementById('routeDiv').classList.remove('hidden');
+    }
+
+    // Countdown timer
+    const weddingDate = new Date("2025-06-07T10:00:00"); // Change date/time as needed
+    const countdownEl = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = weddingDate - now;
+
+      if (diff <= 0) {
+        countdownEl.textContent = "🎉 It's Wedding Time!";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
