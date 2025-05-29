@@ -530,26 +530,7 @@
       audio.play();
     }
   }, { once: true });
-</script>
   
-<script>
-    const bgMusic = document.getElementById('bg-music');
-
-    // Wait for user interaction
-    const startMusic = () => {
-      bgMusic.play().then(() => {
-        console.log("Music started");
-      }).catch(err => {
-        console.log("Autoplay blocked: " + err.message);
-      });
-
-      // Remove listener so it doesn't repeat
-      document.removeEventListener('click', startMusic);
-    };
-
-    // Add click listener
-    document.addEventListener('click', startMusic);
-
     // Language data
     const en = {
       mainTitle: "💐 Wedding Invitation 💐",
