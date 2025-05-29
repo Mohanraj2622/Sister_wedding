@@ -541,22 +541,7 @@
 
     // Add click listener
     document.addEventListener('click', startMusic);
-</script>
-  <script>
-    const audio = document.getElementById('bg-music');
 
-    // Ensure it plays automatically (especially on some browsers like Chrome)
-    document.addEventListener('DOMContentLoaded', () => {
-      // Try to play on load
-      const playAudio = () => {
-        audio.play().catch((error) => {
-          // If autoplay fails (like on user interaction required), try again on user interaction
-          document.body.addEventListener('click', () => audio.play(), { once: true });
-        });
-      };
-      playAudio();
-    });
-  
     // Language data
     const en = {
       mainTitle: "💐 Wedding Invitation 💐",
