@@ -1,109 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Sathiya's Wedding Invitation 🎉</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wedding Invitation - Sathiya 💍 Lokeshwaran</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #ffe4e1, #fff);
+      background: linear-gradient(to right, #fff5e1, #ffe6f0);
       text-align: center;
       padding: 30px;
+      transition: 0.3s;
     }
     .card {
-      background: white;
-      padding: 30px;
+      background: #fff;
+      max-width: 650px;
       margin: auto;
-      max-width: 500px;
+      padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     }
     h1 {
       color: #c0392b;
+      font-size: 28px;
+    }
+    p {
+      font-size: 18px;
     }
     .btn {
-      padding: 12px 25px;
+      padding: 10px 22px;
       margin: 10px;
       border: none;
-      border-radius: 30px;
-      font-size: 16px;
-      cursor: pointer;
+      border-radius: 25px;
       background: #e74c3c;
       color: white;
-      transition: 0.3s;
+      font-size: 16px;
+      cursor: pointer;
     }
     .btn:hover {
       background: #c0392b;
     }
-    .hidden {
-      display: none;
-    }
     #countdown {
-      font-size: 20px;
-      margin: 20px 0;
+      font-size: 22px;
+      margin: 15px 0;
       color: #2c3e50;
     }
     audio {
+      display: none;
+    }
+    #routeDiv {
       margin-top: 20px;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>🎊 Sathiya's Wedding 🎊</h1>
-    <p>You're warmly invited to celebrate a beautiful beginning.<br>Come join us for the special day! ❤️</p>
-    
-    <h2>⏳ Countdown to Wedding</h2>
-    <div id="countdown">Loading...</div>
+    <h1 id="title">🎊 Wedding Invitation 🎊</h1>
+    <p id="invitationText">
+      Mr. S. Lokeshwaran weds Miss M. Sathiya, Dip Nursing<br>
+      You're cordially invited to their wedding on<br>
+      <strong>Friday, 6th June 2025</strong> at <strong>Sri Lokesh Mahal</strong>,<br>
+      Kamarajar Nagar, Thiruvannamalai Road, Krishnagiri.
+    </p>
+    <div id="countdown">Loading countdown...</div>
 
-    <h2>📍 Wedding Location</h2>
-    <p><strong>Grand Marriage Hall</strong></p>
-    
-    <h3>How do you plan to travel?</h3>
-    <button class="btn" onclick="showRoute('bus')">🚌 By Bus</button>
-    <button class="btn" onclick="showRoute('vehicle')">🚗 Personal Vehicle</button>
-    
-    <div id="routeDiv" class="hidden">
-      <h3>Click below to open route:</h3>
-      <a id="mapLink" href="#" class="btn" target="_blank">🗺️ View Route</a>
+    <h3 id="travelText">Choose Your Travel Mode</h3>
+    <button class="btn" onclick="showRoute('bus')">🚌 Bus</button>
+    <button class="btn" onclick="showRoute('vehicle')">🚗 Vehicle</button>
+
+    <div id="routeDiv" style="display:none;">
+      <p><a id="mapLink" class="btn" href="#" target="_blank">🗺️ View Google Maps Route</a></p>
     </div>
 
-    <h3>🎵 Music for the Moment</h3>
-    <audio controls autoplay loop>
-      <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
+    <div>
+      <button class="btn" onclick="switchLanguage()">🌐 Switch to Tamil</button>
+    </div>
+
+    <audio autoplay loop>
+      <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg" />
     </audio>
   </div>
 
   <script>
+    const en = {
+      title: "🎊 Wedding Invitation 🎊",
+      invitationText: `Mr. S. Lokeshwaran weds Miss M. Sathiya, Dip Nursing<br>
+        You're cordially invited to their wedding on<br>
+        <strong>Friday, 6th June 2025</strong> at <strong>Sri Lokesh Mahal</strong>,<br>
+        Kamarajar Nagar, Thiruvannamalai Road, Krishnagiri.`,
+      travelText: "Choose Your Travel Mode"
+    };
+
+    const ta = {
+      title: "💐 திருமண அழைப்பிதழ் 💐",
+      invitationText: `திரு. எஸ். லோகேஷ்வரன் & திருமதி. எம். சத்யா, டிப். நர்சிங்<br>
+        அவர்களின் திருமண விழாவிற்கு உங்கள் வருகையை வேண்டுகிறோம்.<br>
+        <strong>வெள்ளிக்கிழமை, 6-ம் ஜூன் 2025</strong><br>
+        <strong>ஸ்ரீ லோகேஷ் மஹால்</strong>, காமராஜர் நகர், திருவண்ணாமலை சாலை, கிருஷ்ணகிரி.`,
+      travelText: "பயண முறையை தேர்வு செய்யவும்"
+    };
+
+    let currentLang = "en";
+
+    function switchLanguage() {
+      currentLang = currentLang === "en" ? "ta" : "en";
+      const data = currentLang === "en" ? en : ta;
+      document.getElementById("title").innerHTML = data.title;
+      document.getElementById("invitationText").innerHTML = data.invitationText;
+      document.getElementById("travelText").innerHTML = data.travelText;
+    }
+
     function showRoute(mode) {
-      const mapBase = "https://www.google.com/maps/dir/?api=1&destination=11.3458453,77.7183274";
-      let travelMode = mode === "bus" ? "transit" : "driving";
-      const mapURL = `${mapBase}&travelmode=${travelMode}`;
-      document.getElementById('mapLink').href = mapURL;
-      document.getElementById('routeDiv').classList.remove('hidden');
+      const base = "https://www.google.com/maps/dir/?api=1&destination=11.3458453,77.7183274";
+      const travelMode = mode === "bus" ? "transit" : "driving";
+      const mapURL = `${base}&travelmode=${travelMode}`;
+      document.getElementById("mapLink").href = mapURL;
+      document.getElementById("routeDiv").style.display = "block";
     }
 
     // Countdown timer
-    const weddingDate = new Date("2025-06-07T10:00:00"); // Change date/time as needed
+    const weddingDate = new Date("2025-06-06T07:00:00");
     const countdownEl = document.getElementById("countdown");
 
     function updateCountdown() {
       const now = new Date();
       const diff = weddingDate - now;
-
       if (diff <= 0) {
         countdownEl.textContent = "🎉 It's Wedding Time!";
         return;
       }
-
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+      countdownEl.textContent = `${days}d ${hours}h ${mins}m ${secs}s remaining`;
     }
 
     setInterval(updateCountdown, 1000);
