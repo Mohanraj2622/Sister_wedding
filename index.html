@@ -524,7 +524,24 @@
       </div>
     </div>
   </div>
+<script>
+    const bgMusic = document.getElementById('bg-music');
 
+    // Wait for user interaction
+    const startMusic = () => {
+      bgMusic.play().then(() => {
+        console.log("Music started");
+      }).catch(err => {
+        console.log("Autoplay blocked: " + err.message);
+      });
+
+      // Remove listener so it doesn't repeat
+      document.removeEventListener('click', startMusic);
+    };
+
+    // Add click listener
+    document.addEventListener('click', startMusic);
+</script>
   <script>
     const audio = document.getElementById('bg-music');
 
