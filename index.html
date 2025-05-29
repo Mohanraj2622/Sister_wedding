@@ -443,9 +443,7 @@
         <div class="couple-names">Lokeshwaran & Sathiya </div>
       </div>
       
-<!-- Hidden audio element -->
-  <audio id="bg-music" src="Dharala-Prabhu.mp3" autoplay loop></audio>
-
+<audio id="bg-music" src="Dharala-Prabhu.mp3" loop></audio>
   
       <div class="photo-gallery">
         <div class="couple-photo">👰🤵</div>
@@ -524,6 +522,16 @@
       </div>
     </div>
   </div>
+
+  <script>
+  document.addEventListener('click', function () {
+    const audio = document.getElementById('bg-music');
+    if (audio.paused) {
+      audio.play();
+    }
+  }, { once: true });
+</script>
+  
 <script>
     const bgMusic = document.getElementById('bg-music');
 
